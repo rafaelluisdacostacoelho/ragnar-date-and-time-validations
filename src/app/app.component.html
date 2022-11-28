@@ -1,0 +1,95 @@
+<form [formGroup]="reservaForm">
+  <div class="container">
+    <div class="column">
+      <!-- Retirada -->
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Local Retirada</mat-label>
+          <input
+            type="text"
+            matInput
+            placeholder="Placeholder"
+            formControlName="localRetirada"
+          />
+          <mat-icon matSuffix>location_on</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Data Retirada</mat-label>
+          <input
+            type="text"
+            matInput
+            placeholder="Placeholder"
+            formControlName="dataRetirada"
+          />
+          <mat-icon matSuffix>calendar_month</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Hora Retirada</mat-label>
+          <input
+            type="text"
+            matInput
+            [matAutocomplete]="autoRetirada"
+            formControlName="horaRetirada"
+            placeholder="Placeholder"
+          />
+          <mat-icon matSuffix>schedule</mat-icon>
+          <mat-autocomplete #autoRetirada="matAutocomplete">
+            <mat-option
+              *ngFor="let horario of horariosRetirada$ | async"
+              [value]="horario"
+            >
+              {{ horario }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+
+      <!-- Devolução -->
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Local Devolução</mat-label>
+          <input
+            type="text"
+            matInput
+            formControlName="localDevolucao"
+            placeholder="Placeholder"
+          />
+          <mat-icon matSuffix>location_on</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Data Devolução</mat-label>
+          <input
+            type="text"
+            matInput
+            formControlName="dataDevolucao"
+            placeholder="Placeholder"
+          />
+          <mat-icon matSuffix>calendar_month</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Hora Devolução</mat-label>
+          <input
+            type="text"
+            matInput
+            [matAutocomplete]="autoDevolucao"
+            formControlName="horaDevolucao"
+            placeholder="Placeholder"
+          />
+          <mat-icon matSuffix>schedule</mat-icon>
+          <mat-autocomplete #autoDevolucao="matAutocomplete">
+            <mat-option
+              *ngFor="let horario of horariosDevolucao$ | async"
+              [value]="horario"
+            >
+              {{ horario }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+</form>
